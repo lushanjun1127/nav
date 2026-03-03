@@ -1,4 +1,4 @@
-name: Deploy to Workers
+name: Deploy to Cloudflare
 on:
   push:
     branches: [ main ]
