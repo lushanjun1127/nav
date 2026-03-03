@@ -1,5 +1,5 @@
 name = "nav-workers"
-main = "src/workers/work_v2.js"
+main = "work_v2.js"
 compatibility_date = "2026-03-03"
 
 d1_databases = [
