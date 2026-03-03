@@ -4,7 +4,7 @@ compatibility_date = "2026-03-03"
 
 # D1 数据库绑定 (先留空 ID，部署成功后再填)
 d1_databases = [
-  { binding = "NAV_DB", database_name = "book", database_id = "" }
+  { binding = "NAV_DB", database_name = "book", database_id = "e089fc64-da31-465e-a720-e6e4e106992a" }
 ]
 
 # KV 命名空间绑定 (先留空 ID)
