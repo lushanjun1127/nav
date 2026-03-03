@@ -8,4 +8,4 @@ d1_databases = [
 ]
 
 # KV 命名空间绑定 (先留空 ID)
-vars = { NAV_AUTH = "" }
+vars = { NAV_AUTH = "0bce767e908048e6a310cbdf4a30633d" }
