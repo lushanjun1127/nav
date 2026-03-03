@@ -1,0 +1,9 @@
+name = "nav-workers"
+main = "src/workers/work_v2.js"
+compatibility_date = "2026-03-03"
+
+d1_databases = [
+  { binding = "NAV_DB", database_name = "book", database_id = "" }
+]
+
+vars = { NAV_AUTH = "your-kv-namespace-id" }
