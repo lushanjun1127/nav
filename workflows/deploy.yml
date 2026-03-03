@@ -1,19 +1,32 @@
-name: Deploy to Cloudflare
+name: Deploy to Cloudflare Workers
+
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # 允许手动触发部署
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy Worker
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Install Wrangler
         run: npm install -g wrangler
-      - name: Deploy
-        run: |
-          wrangler login ${{ secrets.CF_API_TOKEN }}
-          cp src/workers/work_v2.js ./index.js
-          npx wrangler deploy
+
+      - name: Login to Cloudflare
+        # ✅ 正确方式：使用 echo 和管道符将 Token 传递给 wrangler login
+        run: echo "${{ secrets.CF_API_TOKEN }}" | wrangler login --api-token
+
+      - name: Deploy to Cloudflare
+        # ✅ 关键：直接部署。Wrangler 会自动读取 wrangler.toml 中的 main = "./work_v2.js"
+        # ❌ 已移除：cp src/workers/work_v2.js ./index.js (此操作多余且可能导致路径错误)
+        run: npx wrangler deploy
+        
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          # CF_API_TOKEN 已在上一步登录中使用，此处可选填，但保留以符合习惯
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
