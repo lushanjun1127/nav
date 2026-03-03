@@ -1,0 +1,19 @@
+name: Deploy to Workers
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Wrangler
+        run: npm install -g wrangler
+      - name: Deploy
+        run: |
+          wrangler login ${{ secrets.CF_API_TOKEN }}
+          cp src/workers/work_v2.js ./index.js
+          npx wrangler deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
