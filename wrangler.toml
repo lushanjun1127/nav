@@ -1,4 +1,5 @@
-name = "nav-workers"
+# wrangler.toml
+name = 'nav'
 main = "./work_v2.js"  # ⚠️ 关键：直接指向根目录下的 work_v2.js
 compatibility_date = "2026-03-03"
 
